@@ -5,21 +5,17 @@ import random
 intents = discord.Intents.default()
 intents.message_content = True
 
-celal = commands.Bot(command_prefix='$', intents=intents)
+client = commands.Bot(command_prefix='$', intents=intents)
 
-@celal.event
+@client.event
 async def on_ready():
-    print(f'{celal.user} olarak giriş yaptık')
+    print(f'{client.user} olarak giriş yaptık')
 
-@celal.command()
+@client.command()
 async def hello(ctx):
-    await ctx.send(f'Merhaba! Ben {celal.user}, bir Discord sohbet botuyum!')
+    await ctx.send(f'Merhaba! Ben {client.user}, bir Discord sohbet botuyum!')
 
-@celal.command()
-async def heh(ctx, count_heh = 5):
-    await ctx.send("he" * count_heh)
-
-@celal.command()
+@client.command()
 async def roll(ctx, dice: str):
     """Rolls a dice in NdN format."""
     try:
@@ -31,4 +27,4 @@ async def roll(ctx, dice: str):
     result = ', '.join(str(random.randint(1, limit)) for r in range(rolls))
     await ctx.send(result)
 
-celal.run("TOKEN")
+client.run("TOKEN")
